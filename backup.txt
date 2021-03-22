@@ -6,6 +6,12 @@
           "host": {
             "sourcePath": "/var/app/current/backend"
           }
+        },
+        {
+          "name": "client",
+          "host": {
+            "sourcePath": "/var/app/current/client"
+          }
         }
       ],
     "containerDefinitions":[
@@ -28,6 +34,19 @@
             {
               "sourceVolume": "backend",
               "containerPath": "/usr/src"
+            }
+          ],
+        "memory": 300
+      },
+      {
+        "name": "client",
+        "image": "paullamxd/react-frontend",
+        "hostname": "client",
+        "essential": false,
+        "portMappings": [
+            {
+              "hostPort": 3001,
+              "containerPort": 3000
             }
           ],
         "memory": 300
