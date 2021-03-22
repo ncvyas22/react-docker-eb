@@ -16,7 +16,7 @@
       },
       {
         "name": "client",
-        "image": "paullamxd/node-backend",
+        "image": "paullamxd/react-frontend",
         "hostname": "client",
         "essential": false,
         "portMappings": [
