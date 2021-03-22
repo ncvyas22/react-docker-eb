@@ -1,0 +1,31 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions":[
+      {
+        "name": "backend",
+        "image": "paullamxd/node-backend",
+        "hostname": "backend",
+        "essential": true,
+        "portMappings": [
+            {
+              "hostPort": 8081,
+              "containerPort": 8080
+            }
+          ],
+        "memory": 300
+      },
+      {
+        "name": "client",
+        "image": "paullamxd/node-backend",
+        "hostname": "client",
+        "essential": false,
+        "portMappings": [
+            {
+              "hostPort": 3001,
+              "containerPort": 3000
+            }
+          ],
+        "memory": 300
+      }
+    ]
+}
