@@ -1,16 +1,12 @@
-'use strict';
+const express = require("express");
+const bodyParser = require("body-parser");
+const taskRoutes = require("./routes/tasks");
 
-const express = require('express');
-
-// Constants
-const PORT = process.env.PORT;
-
-// App
 const app = express();
-app.get('/', (req, res) => {
-  res.send('Node JS Server is running!');
-});
+app.use(bodyParser.json());
 
-app.listen(PORT, ()  => {
-    console.log(`Running on port ${PORT}`);
-});
+// Task routes
+app.use("/api/tasks", taskRoutes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
