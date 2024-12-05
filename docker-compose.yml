@@ -1,31 +1,21 @@
-version: '3'
-
+version: "3.8"
 services:
-  backend:
-    env_file:
-        "./server/.env"
-    build:
-      context: ./server
-      dockerfile: ./Dockerfile
-    image: "paullamxd/node-backend"
-    ports:
-      - "8080:8080"
   frontend:
-    build:
-      context: ./client
-      dockerfile: ./Dockerfile
-    image: "paullamxd/react-frontend"
+    build: ./client
     ports:
-      - "3000:80"
-    links:
-      - "backend:be"
-  reverse-proxy:
-    image: nginx:1.17.10
-    container_name: reverse_proxy
+      - "3000:3000"
     depends_on:
       - backend
-      - frontend
-    volumes:
-      - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+  backend:
+    build: ./server
     ports:
-      - 80:80
+      - "5000:5000"
+    depends_on:
+      - database
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: tasks
+    ports:
+      - "3306:3306"
